@@ -5,14 +5,8 @@
 //  Created by Alberto Fernandez-Baillo Rodriguez on 19/9/22.
 //
 
-import Foundation
 import Alamofire
 import RxSwift
-
-struct House: Decodable {
-    var house: String
-    var house2: String
-}
 
 struct ErrorResponse: Error {
     let statusCode: Int?
