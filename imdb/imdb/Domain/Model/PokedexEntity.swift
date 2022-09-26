@@ -10,9 +10,9 @@ import Alamofire
 import RxSwift
 
 struct PokedexEntity {
-    var id: UUID
+    var id: UUID = UUID()
     var count: Int?
-    var next: Int?
-    var previous: Int?
-    var results: [PokemonPokedexDTO]?
+    var next: String?
+    var previous: String?
+    var results: [PokemonPokedexEntity]?
 }

@@ -20,10 +20,18 @@ class GetPokedexUseCase {
             .map { data -> PokedexEntity in
 
                 if data.statusCode == 200, let pokedex = data.body {
-                    return PokedexEntity(id: pokedex.id, count: pokedex.count, next: pokedex.next, previous: pokedex.previous, results: pokedex.results)
+                    var listOfPokemons: [PokemonPokedexEntity] = []
+
+                    if let pokemonList = pokedex.results {
+                        for pokemon in pokemonList {
+                            listOfPokemons.append(PokemonPokedexEntity(name: pokemon.name, url: pokemon.url))
+                        }
+                    }
+
+                    return PokedexEntity(count: pokedex.count, next: pokedex.next, previous: pokedex.previous, results: listOfPokemons)
                 }
 
                 return PokedexEntity(id: UUID())
-            }
+            }.asObservable()
     }
 }

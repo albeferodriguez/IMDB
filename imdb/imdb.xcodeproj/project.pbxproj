@@ -15,6 +15,8 @@
 		EB6792C128E1F890007B2915 /* GetPokedexUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6792C028E1F890007B2915 /* GetPokedexUseCase.swift */; };
 		EB6792C328E1F8CF007B2915 /* PokedexService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6792C228E1F8CF007B2915 /* PokedexService.swift */; };
 		EB6792C628E1F8F7007B2915 /* PokedexRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6792C528E1F8F7007B2915 /* PokedexRepository.swift */; };
+		EB6792CA28E20237007B2915 /* PokedexPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6792C928E20237007B2915 /* PokedexPresenter.swift */; };
+		EB6792CC28E209FB007B2915 /* PokedexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6792CB28E209FB007B2915 /* PokedexView.swift */; };
 		EB8D4DA728D8D5F800420185 /* imdbApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8D4DA628D8D5F800420185 /* imdbApp.swift */; };
 		EB8D4DA928D8D5F800420185 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8D4DA828D8D5F800420185 /* ContentView.swift */; };
 		EB8D4DAB28D8D5FE00420185 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB8D4DAA28D8D5FE00420185 /* Assets.xcassets */; };
@@ -34,6 +36,8 @@
 		EB6792C028E1F890007B2915 /* GetPokedexUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPokedexUseCase.swift; sourceTree = "<group>"; };
 		EB6792C228E1F8CF007B2915 /* PokedexService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexService.swift; sourceTree = "<group>"; };
 		EB6792C528E1F8F7007B2915 /* PokedexRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexRepository.swift; sourceTree = "<group>"; };
+		EB6792C928E20237007B2915 /* PokedexPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexPresenter.swift; sourceTree = "<group>"; };
+		EB6792CB28E209FB007B2915 /* PokedexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexView.swift; sourceTree = "<group>"; };
 		EB8D4DA328D8D5F800420185 /* imdb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imdb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8D4DA628D8D5F800420185 /* imdbApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imdbApp.swift; sourceTree = "<group>"; };
 		EB8D4DA828D8D5F800420185 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -107,6 +111,23 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		EB6792C728E2020B007B2915 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EB6792C828E20211007B2915 /* PokedexView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EB6792C828E20211007B2915 /* PokedexView */ = {
+			isa = PBXGroup;
+			children = (
+				EB6792C928E20237007B2915 /* PokedexPresenter.swift */,
+				EB6792CB28E209FB007B2915 /* PokedexView.swift */,
+			);
+			path = PokedexView;
+			sourceTree = "<group>";
+		};
 		EB8D4D9A28D8D5F800420185 = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +149,7 @@
 		EB8D4DA528D8D5F800420185 /* imdb */ = {
 			isa = PBXGroup;
 			children = (
+				EB6792C728E2020B007B2915 /* View */,
 				EB8D4DB728D8D7B400420185 /* Domain */,
 				EB8D4DB428D8D6E900420185 /* Data */,
 				EB8D4DA628D8D5F800420185 /* imdbApp.swift */,
@@ -293,10 +315,12 @@
 				EB8D4DBA28D8D7CF00420185 /* PokedexEntity.swift in Sources */,
 				EB6792C628E1F8F7007B2915 /* PokedexRepository.swift in Sources */,
 				EB6792C128E1F890007B2915 /* GetPokedexUseCase.swift in Sources */,
+				EB6792CC28E209FB007B2915 /* PokedexView.swift in Sources */,
 				EB6792BE28E1F818007B2915 /* PokemonPokedexEntity.swift in Sources */,
 				EB8D4DA728D8D5F800420185 /* imdbApp.swift in Sources */,
 				EB6792B628E1F3C5007B2915 /* CodableHelper.swift in Sources */,
 				EB6792BA28E1F73A007B2915 /* PokedexDTO.swift in Sources */,
+				EB6792CA28E20237007B2915 /* PokedexPresenter.swift in Sources */,
 				EB6792C328E1F8CF007B2915 /* PokedexService.swift in Sources */,
 				EB8D4DB628D8D6FF00420185 /* AlamofireWrapper.swift in Sources */,
 			);

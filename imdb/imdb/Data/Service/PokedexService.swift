@@ -14,7 +14,7 @@ class PokedexService: PokedexRepository {
             "limit" : limit,
             "offset" : offset
         ]
-        let service = NetworkingClient<PokedexDTO>(url: "https://pokeapi.co/api/v2/pokemon", method: .get, parameters: parameters, isBody: true)
+        let service = NetworkingClient<PokedexDTO>(url: "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0", method: .get, parameters: nil, isBody: true)
 
         return service.execute()
     }

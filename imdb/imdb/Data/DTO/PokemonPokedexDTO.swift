@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct PokemonPokedexDTO: Decodable, Identifiable {
-    var id: UUID
+struct PokemonPokedexDTO: Decodable {
     var name: String?
     var url: String?
 }

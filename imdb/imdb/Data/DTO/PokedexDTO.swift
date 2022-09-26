@@ -7,10 +7,9 @@
 
 import Foundation
 
-struct PokedexDTO: Decodable, Identifiable {
-    var id: UUID
+struct PokedexDTO: Decodable {
     var count: Int?
-    var next: Int?
-    var previous: Int?
+    var next: String?
+    var previous: String?
     var results: [PokemonPokedexDTO]?
 }

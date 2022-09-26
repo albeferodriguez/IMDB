@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct PokemonPokedexEntity {
-    var id: UUID
+struct PokemonPokedexEntity: Identifiable {
+    var id: UUID = UUID()
     var name: String?
     var url: String?
 }

@@ -7,7 +7,7 @@ target 'imdb' do
 
   # Pods for imdb
 
-  pod 'Alamofire', '~> 5.5.0'
-  pod 'RxSwift', '6.5.0' 
+  pod 'Alamofire'
+  pod 'RxSwift', '5.1.3'
 
 end

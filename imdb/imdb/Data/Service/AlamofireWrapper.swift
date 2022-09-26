@@ -64,6 +64,8 @@ class NetworkingClient<T: Decodable> {
             encoding: isBody ? JSONEncoding() : URLEncoding(),
             headers: self.headers
         )
+
+        //print("url: \(dataRequest)")
         return performRequest(dataRequest: dataRequest)
     }
 
@@ -85,7 +87,7 @@ class NetworkingClient<T: Decodable> {
                             observer.onError(ErrorResponse(statusCode: 500, data: nil, error: error))
                         } else {
                             observer.onNext(Response(response: response, body: decoded.decodedObj))
-                            observer.onCompleted()
+                            
                         }
                     case (.none, .none):
                         observer.onError(ErrorResponse(statusCode: 500, data: nil, error: nil))
