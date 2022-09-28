@@ -11,4 +11,5 @@ struct PokemonDTO: Decodable {
     var sprites: SpritesDTO?
     var types: [TypesDTO]?
     var forms: [FormsDTO]?
+    var stats: [StatsInfoDTO]?
 }

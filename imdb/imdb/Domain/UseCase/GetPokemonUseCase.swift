@@ -20,8 +20,8 @@ class GetPokemonUseCase {
             .map { data -> PokemonEntity in
 
                 if data.statusCode == 200, let pokemon = data.body {
-                    let dreamWorld = DreamWorldEntity(id: UUID(), frontImage: pokemon.sprites?.other?.dream_world?.front_default)
-                    let otherSprites = OtherSpritesEntity(id: UUID(), dreamWorld: dreamWorld)
+                    let artWork = ArtWorkEntity(id: UUID(), frontImage: pokemon.sprites?.other?.artWork?.front_default)
+                    let otherSprites = OtherSpritesEntity(id: UUID(), artWork: artWork)
                     let spritesEntity = SpriteEntity(id: UUID(), slot: pokemon.sprites?.slot, other: otherSprites)
                     var types = [TypesEntity]()
                     if let listOfTypes = pokemon.types {
@@ -36,7 +36,16 @@ class GetPokemonUseCase {
                             forms.append(FormsEntity(id: UUID(), name: item.name, url: item.url))
                         }
                     }
-                    return PokemonEntity(id: UUID(), name: forms[0].name, sprites: spritesEntity, types: types, forms: forms)
+
+                    var stats = [StatsInfoEntity]()
+                    if let statsList = pokemon.stats {
+                        for stat in statsList {
+                            stats.append(
+                                StatsInfoEntity(id: UUID(), baseStat: stat.base_stat, effort: stat.effort, stat: StatEntity(id: UUID(), name: stat.stat?.name, url: stat.stat?.url))
+                            )
+                        }
+                    }
+                    return PokemonEntity(id: UUID(), name: forms[0].name?.capitalizingFirstLetter(), sprites: spritesEntity, types: types, forms: forms, stats: stats)
                 }
                 return PokemonEntity(id: UUID(), sprites: nil, types: nil)
             }.asObservable()

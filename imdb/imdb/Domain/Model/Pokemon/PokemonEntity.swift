@@ -14,4 +14,5 @@ struct PokemonEntity: Identifiable {
     var sprites: SpriteEntity?
     var types: [TypesEntity]?
     var forms: [FormsEntity]?
+    var stats: [StatsInfoEntity]?
 }

@@ -8,5 +8,15 @@
 import Foundation
 
 struct OtherSpritesDTO: Decodable {
-    var dream_world: DreamWorldDTO?
+    var artWork: ArtWorkDTO?
+
+    enum CodingKeys: String, CodingKey {
+        case artWork = "official-artwork"
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        artWork = try container.decodeIfPresent(ArtWorkDTO.self, forKey: .artWork)
+
+    }
 }

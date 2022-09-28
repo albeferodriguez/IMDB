@@ -9,5 +9,5 @@ import Foundation
 
 struct OtherSpritesEntity: Identifiable {
     var id = UUID()
-    var dreamWorld: DreamWorldEntity?
+    var artWork: ArtWorkEntity?
 }
