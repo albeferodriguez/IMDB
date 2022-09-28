@@ -26,13 +26,15 @@ struct PokedexView: View {
     @StateObject var presenter = PokedexPresenter()
 
     var body: some View {
-
-        List {
-            ForEach(presenter.getPokedexItems()) { items in
-                SimpleList(name: items.name ?? "no sabe")
-            }
+        VStack {
+            Image("icn_pokemon_logo")
+                .resizable()
+                .frame(width: 240, height: 90)
+                .padding()
+            PokedexItemList(pokedexList: presenter.pokedexItems)
+        }.onAppear {
+            presenter.getPokedex()
         }
-        
     }
 }
 

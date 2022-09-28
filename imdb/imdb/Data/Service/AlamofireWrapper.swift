@@ -38,7 +38,7 @@ class NetworkingClient<T: Decodable> {
     var url: URLConvertible
     var method: HTTPMethod
     var parameters: [String: Any]?
-    var headers: HTTPHeaders
+    var headers: HTTPHeaders?
     var isBody: Bool
     var dateFormat: String?
 
@@ -87,7 +87,7 @@ class NetworkingClient<T: Decodable> {
                             observer.onError(ErrorResponse(statusCode: 500, data: nil, error: error))
                         } else {
                             observer.onNext(Response(response: response, body: decoded.decodedObj))
-                            
+                            observer.onCompleted()
                         }
                     case (.none, .none):
                         observer.onError(ErrorResponse(statusCode: 500, data: nil, error: nil))
