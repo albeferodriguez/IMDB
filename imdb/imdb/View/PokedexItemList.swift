@@ -12,7 +12,6 @@ import SVGKit
 struct PokedexItemList: View {
 
     var pokedexList: [PokemonEntity]?
-    @ObservedObject var presenter = PokedexPresenter()
 
     let columns = [
         GridItem(.fixed(160), spacing: 20),
@@ -20,7 +19,6 @@ struct PokedexItemList: View {
     ]
 
     var body: some View {
-            ScrollView {
                 LazyVGrid(columns: columns) {
                     if let list = pokedexList {
                             ForEach(list) { pokemon in
@@ -31,17 +29,20 @@ struct PokedexItemList: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                             Text(name)
+                                                .font(.body)
+                                                .fontWeight(.bold)
+                                                .foregroundColor(pokemon.types?[0].name == "ice" ? .black : .white)
                                         } //: IF LET
                                     }//: VSTACK
                                     .padding(.bottom, 10)
-                                    .background(Color.red)
+                                    .background(pokemon.types?[0].color)
                                     .cornerRadius(8)
                                 }//: NAV LINK
                                 .foregroundColor(.white)
                         }//: FOR EACH
                     }//: IF LET
                 }//: LAZYVGRID
-            }//: SCROLLVIEW
+
     }
 }
 

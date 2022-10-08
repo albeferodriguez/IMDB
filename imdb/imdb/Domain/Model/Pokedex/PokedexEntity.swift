@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import Alamofire
-import RxSwift
 
 struct PokedexEntity {
     var id: UUID = UUID()

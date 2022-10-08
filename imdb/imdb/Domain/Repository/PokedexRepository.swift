@@ -8,5 +8,5 @@
 import RxSwift
 
 protocol PokedexRepository {
-    func getPokedex(limit: Int, offset: Int) -> Observable<Response<PokedexDTO>> 
+    func getPokedex(url: String?, parameters: [String : Int]) -> Observable<Response<PokedexDTO>> 
 }

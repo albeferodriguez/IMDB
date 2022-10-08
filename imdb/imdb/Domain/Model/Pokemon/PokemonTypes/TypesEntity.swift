@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct TypesEntity: Identifiable {
     var id = UUID()
-    var slot: Int?
-    var type: TypeEntity?
+    var name: String?
+    var color: Color?
 }

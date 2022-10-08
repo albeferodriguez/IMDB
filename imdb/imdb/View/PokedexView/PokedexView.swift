@@ -7,6 +7,20 @@
 
 import SwiftUI
 
+struct ActivityIndicator: UIViewRepresentable {
+
+    typealias UIView = UIActivityIndicatorView
+    var isAnimating: Bool
+    fileprivate var configuration = { (indicator: UIView) in }
+
+    func makeUIView(context: UIViewRepresentableContext<Self>) -> UIView { UIView() }
+
+    func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<Self>) {
+        isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
+        configuration(uiView)
+    }
+}
+
 struct PokedexView: View {
 
     @StateObject var presenter = PokedexPresenter()
@@ -18,13 +32,16 @@ struct PokedexView: View {
                     .resizable()
                     .frame(width: 240, height: 90)
                     .padding()
-                PokedexItemList(pokedexList: presenter.pokedexItems)
-            }.onAppear {
-                presenter.getPokedex()
+                ScrollView(showsIndicators: false) {
+                    PokedexItemList(pokedexList: presenter.pokedexItems)
+                }.onAppear {
+                    presenter.getPokedex()
+                }
             }
+            .navigationTitle("")
+            .navigationBarHidden(true)
         }
-        .navigationTitle("")
-        .navigationBarHidden(true)
+
     }
 }
 

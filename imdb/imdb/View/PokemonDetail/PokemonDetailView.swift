@@ -26,16 +26,16 @@ struct PokemonDetailView: View {
                         Text(pokemon.name ?? "unkown")
                             .font(.title)
                             .fontWeight(.bold)
-                            .foregroundColor(.black)
+                            .foregroundColor(pokemon.types?[0].color)
 
                         HStack {
                             if let list = pokemon.types {
                                 ForEach(list) { type in
-                                    Text(type.type?.name ?? "")
+                                    Text(type.name?.capitalizingFirstLetter() ?? "")
                                         .font(.caption)
+                                        .fontWeight(.bold)
                                         .padding()
-                                        .foregroundColor(.white)
-                                        .background(Color.gray)
+                                        .background(type.color)
                                         .cornerRadius(4)
                                 }
                             }
@@ -44,16 +44,23 @@ struct PokemonDetailView: View {
                         VStack {
                             if let list = pokemon.stats {
                                 ForEach(list) { stat in
-                                    HStack(alignment: .lastTextBaseline) {
-                                        Text(stat.stat?.name ?? "")
-                                            .font(.body)
+                                    HStack(alignment: .firstTextBaseline) {
+                                        Text(stat.stat?.name?.capitalizingFirstLetter() ?? "")
+                                            .font(.footnote)
+                                            .frame(width: 60)
+                                            .multilineTextAlignment(.leading)
+
                                         Spacer()
-                                        BarchartView(value: Double(stat.baseStat ?? Int(0.0)), width: 150, height: 10)
+                                        BarchartView(value: Double(stat.baseStat ?? Int(0.0)), width: 180, height: 10, color: pokemon.types?[0].color ?? .red)
+                                            .padding(.trailing, 20)
+
                                         Text("\(stat.baseStat ?? 0)")
                                             .font(.body)
+                                            .frame(width: 40)
+                                            .padding(.trailing, 10)
                                     }//: HSTACK LIST
-                                    .padding(.leading, 25)
-                                    .padding(.trailing, 25)
+                                    .padding(.leading, 10)
+                                    .padding(.trailing, 15)
 
                                     Divider()
                                         .frame(width: 150, height: 1)
@@ -75,7 +82,9 @@ struct PokemonDetailView: View {
 
             }//: ZSTACK
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.red)
+            .background(pokemon.types?[0].color)
+            .navigationBarTitle("")
+            .ignoresSafeArea(.container, edges: .top)
         }//: SCROLLVIEW
     }
 }

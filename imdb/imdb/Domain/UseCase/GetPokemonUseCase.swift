@@ -6,6 +6,7 @@
 //
 
 import RxSwift
+import SwiftUI
 
 class GetPokemonUseCase {
 
@@ -19,6 +20,8 @@ class GetPokemonUseCase {
         return self.service.getPokemon(url: url)
             .map { data -> PokemonEntity in
 
+                var typeColors = [(Types, Color)]()
+
                 if data.statusCode == 200, let pokemon = data.body {
                     let artWork = ArtWorkEntity(id: UUID(), frontImage: pokemon.sprites?.other?.artWork?.front_default)
                     let otherSprites = OtherSpritesEntity(id: UUID(), artWork: artWork)
@@ -26,8 +29,9 @@ class GetPokemonUseCase {
                     var types = [TypesEntity]()
                     if let listOfTypes = pokemon.types {
                         for pokemonType in listOfTypes {
-                            let type = TypeEntity(id: UUID(), name: pokemonType.type?.name, url: pokemonType.type?.url)
-                            types.append(TypesEntity(id: UUID(), slot: pokemonType.slot, type: type))
+                            let typeConverted = TypeColorTransformer.getType(type: pokemonType.type?.name)
+                            let type = TypesEntity(id: UUID(), name: typeConverted.0.rawValue, color: typeConverted.1)
+                            types.append(type)
                         }
                     }
                     var forms = [FormsEntity]()
@@ -41,7 +45,7 @@ class GetPokemonUseCase {
                     if let statsList = pokemon.stats {
                         for stat in statsList {
                             stats.append(
-                                StatsInfoEntity(id: UUID(), baseStat: stat.base_stat, effort: stat.effort, stat: StatEntity(id: UUID(), name: stat.stat?.name, url: stat.stat?.url))
+                                StatsInfoEntity(id: UUID(), baseStat: stat.base_stat ?? 0 < 100 ? stat.base_stat : 100, effort: stat.effort, stat: StatEntity(id: UUID(), name: stat.stat?.name, url: stat.stat?.url))
                             )
                         }
                     }

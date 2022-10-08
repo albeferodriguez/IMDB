@@ -16,8 +16,13 @@ class GetPokedexUseCase {
         self.service = service
     }
 
-    func getPokedex() -> Observable<PokedexEntity> {
-        return self.service.getPokedex(limit: 20, offset: 0)
+    func getPokedex(url: String? = nil, limit: Int = 100000) -> Observable<PokedexEntity> {
+
+        let parameters: [String : Int] = [
+            "offset" : 0,
+            "limit" : limit
+        ]
+        return self.service.getPokedex(url: url, parameters: parameters)
             .map { data -> PokedexEntity in
 
                 if data.statusCode == 200, let pokedex = data.body {
