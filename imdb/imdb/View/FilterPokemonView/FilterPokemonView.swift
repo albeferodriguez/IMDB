@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct FilterPokemonView: View {
+
+    @EnvironmentObject var presenter: PokedexPresenter
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack {
+                SearchComponent(presenter: presenter)
+                ScrollView(showsIndicators: false) {
+                    PokedexItemList(pokedexList: presenter.pokedexItems)
+                }
+            }
+            .navigationTitle("")
+            .navigationBarHidden(true)
+        }
     }
 }
 
-struct FilterPokemonView_Previews: PreviewProvider {
-    static var previews: some View {
-        FilterPokemonView()
-    }
-}

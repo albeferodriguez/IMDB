@@ -8,8 +8,37 @@
 import SwiftUI
 
 struct ContentView: View {
+
+    @StateObject var presenter = PokedexPresenter()
+
     var body: some View {
-        PokedexView()
+        
+        TabView {
+            PokedexView()
+                .tabItem {
+                    VStack {
+                        Image("pokedex")
+                            .resizable()
+                            .frame(width: 8, height: 8)
+                            .aspectRatio(contentMode: .fit)
+                        Text("Pokedex")
+                    }
+                }
+                .padding()
+                .environmentObject(presenter)
+
+            FilterPokemonView()
+                .tabItem {
+                    VStack {
+                        Image("search")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                        Text("Search")
+                    }
+                }
+                .padding()
+                .environmentObject(presenter)
+        }
     }
 }
 

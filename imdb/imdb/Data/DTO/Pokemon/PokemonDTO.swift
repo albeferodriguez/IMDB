@@ -12,4 +12,6 @@ struct PokemonDTO: Decodable {
     var types: [TypesDTO]?
     var forms: [FormsDTO]?
     var stats: [StatsInfoDTO]?
+    var weight: Int?
+    var height: Int?
 }

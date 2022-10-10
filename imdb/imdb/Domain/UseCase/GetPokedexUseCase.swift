@@ -16,7 +16,7 @@ class GetPokedexUseCase {
         self.service = service
     }
 
-    func getPokedex(url: String? = nil, limit: Int = 100000) -> Observable<PokedexEntity> {
+    func getPokedex(url: String? = nil, limit: Int = 120) -> Observable<PokedexEntity> {
 
         let parameters: [String : Int] = [
             "offset" : 0,

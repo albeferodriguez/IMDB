@@ -48,6 +48,6 @@ struct PokedexItemList: View {
 
 struct PokedexItemList_Previews: PreviewProvider {
     static var previews: some View {
-        PokedexItemList(pokedexList: [PokemonEntity(id: UUID(), name: "bulbasaur", sprites: nil, types: nil, forms: nil)])
+        PokedexItemList(pokedexList: [PokemonEntity(id: UUID(), position: 1, name: "bulbasaur", sprites: nil, types: nil, forms: nil)])
     }
 }

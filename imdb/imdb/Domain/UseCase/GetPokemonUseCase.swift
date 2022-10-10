@@ -11,6 +11,7 @@ import SwiftUI
 class GetPokemonUseCase {
 
     var service: PokemonRepository
+    var position = 0
 
     init(service: PokemonRepository) {
         self.service = service
@@ -19,8 +20,6 @@ class GetPokemonUseCase {
     func getPokemon(url: String) -> Observable<PokemonEntity> {
         return self.service.getPokemon(url: url)
             .map { data -> PokemonEntity in
-
-                var typeColors = [(Types, Color)]()
 
                 if data.statusCode == 200, let pokemon = data.body {
                     let artWork = ArtWorkEntity(id: UUID(), frontImage: pokemon.sprites?.other?.artWork?.front_default)
@@ -34,6 +33,14 @@ class GetPokemonUseCase {
                             types.append(type)
                         }
                     }
+
+                    var typesConcatenated: String
+                    if types.count > 1 {
+                        typesConcatenated = "\(types[0].name!) / \(types[1].name!)"
+                    } else {
+                        typesConcatenated = types[0].name ?? ""
+                    }
+
                     var forms = [FormsEntity]()
                     if let formsList = pokemon.forms {
                         for item in formsList {
@@ -49,9 +56,9 @@ class GetPokemonUseCase {
                             )
                         }
                     }
-                    return PokemonEntity(id: UUID(), name: forms[0].name?.capitalizingFirstLetter(), sprites: spritesEntity, types: types, forms: forms, stats: stats)
+                    return PokemonEntity(id: UUID(), position: Int(url.split(separator: "/")[5]) ?? -1, name: forms[0].name?.capitalizingFirstLetter(), sprites: spritesEntity, types: types, forms: forms, stats: stats, weight: pokemon.weight, height: pokemon.height, typesConcatenated: typesConcatenated)
                 }
-                return PokemonEntity(id: UUID(), sprites: nil, types: nil)
+                return PokemonEntity(id: UUID(), position: -1, sprites: nil, types: nil)
             }.asObservable()
     }
 }
